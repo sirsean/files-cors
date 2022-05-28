@@ -5,16 +5,15 @@ export default {
         url.hostname = 'files-3d9.pages.dev';
         return fetch(url.toString(), request)
             .then(response => {
-                const headers = response.headers;
+                let headers = new Headers(response.headers);
                 headers.set('Access-Control-Allow-Origin', '*');
-                headers.set('Access-Control-Allow-Methods': 'GET,HEAD');
+                headers.set('Access-Control-Allow-Methods', 'GET,HEAD');
                 return new Response(response.body,
                     {
                         status: response.status,
                         statusText: response.statusText,
                         headers: headers,
                     });
-            );
             });
     },
 };
